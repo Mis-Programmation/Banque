@@ -4,15 +4,15 @@ import entity.CompteEntity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
-public interface CompteDaoInterface extends DaoInterface {
+public interface CompteDaoInterface {
     /**
      * permet de enregister un compte
      * @param compteEntity
      * @throws SQLException
-     *
      */
     public void save(CompteEntity compteEntity) throws SQLException;
-    public ResultSet findByNumber(String number) throws SQLException;
-    public ResultSet findAll() throws SQLException;
+    public CompteEntity findCompteWitCustomer(String number) throws SQLException;
+    public List<CompteEntity> findAll() throws SQLException;
 }

@@ -1,34 +1,12 @@
 package businessLayerInterface;
 
-import businessLayerImp.Operation;
+import businessLayerImp.OperationService;
 import entity.CompteEntity;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface CompteBLInterface  {
-
-    /**
-     * permet d'ajouter un compte
-     * @param compteEntity
-     * @return
-     */
-     public boolean save(CompteEntity compteEntity) throws SQLException;
-
-    /**
-     * permet de recuperer touts les comptes
-     * @return
-     */
-    public List<CompteEntity> findAll() throws SQLException;
-
-    /**
-     *  permet de recuperer un compte
-     * @param number
-     * @return
-     * @throws SQLException
-     */
-    public CompteEntity findByNumber(String number) throws SQLException;
-
+public interface CompteServiceInterface {
 
     /**
      * versement
@@ -59,5 +37,5 @@ public interface CompteBLInterface  {
      * liste des operation
      * @return
      */
-    public List<Operation> getAllOperation();
+    public List<OperationService> getAllOperation();
 }

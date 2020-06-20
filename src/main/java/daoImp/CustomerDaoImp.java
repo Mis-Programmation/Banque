@@ -1,11 +1,14 @@
 package daoImp;
 
+import entity.CompteEntity;
 import entity.CustomerEntity;
 import daoInterface.CustomerDaoInterface;
 import helpers.DatabaseHelper;
-
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implementation du class access au donnee client
@@ -26,8 +29,88 @@ public class CustomerDaoImp extends DaoImp implements CustomerDaoInterface {
         preparedStatement.setString(4,customerEntity.getNumberIdentification());
         preparedStatement.setString(5,customerEntity.getAddress());
         preparedStatement.execute();
+
         preparedStatement.close();
         DatabaseHelper.closeConnection();
+    }
+
+
+    @Override
+     public List<CustomerEntity> findAll() throws SQLException {
+        List<CustomerEntity> customerEntities = new ArrayList<>();
+        CustomerEntity customerEntity;
+        String sql = "SELECT * FROM client";
+        PreparedStatement preparedStatement = DatabaseHelper.getConnection().prepareStatement(sql);
+        ResultSet resultSet =  preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                customerEntity = hydrate(resultSet);
+                customerEntities.add(customerEntity);
+            }
+            resultSet.close();
+
+        return customerEntities;
+    }
+
+    @Override
+    public CustomerEntity findCustomerWithCompte(String numro_piece) throws SQLException {
+        CustomerEntity customerEntity;
+        List<CompteEntity> compteEntities = new ArrayList<>();
+        customerEntity = findByName(numro_piece);
+
+        if(customerEntity == null){
+            return null;
+        }
+        ResultSet resultSet = findbyValue("compte","compte.client_id",String.valueOf(customerEntity.getId()));
+        while(resultSet.next()) {
+            CompteEntity compteEntity =
+                    new CompteEntity(resultSet.getString("numero"),resultSet.getDouble("solde"),
+                            resultSet.getDate("date_creation")
+                    );
+            compteEntities.add(compteEntity);
+        }
+        customerEntity.setCompte(compteEntities);
+        return customerEntity;
+    }
+
+    /**
+     * permet de recuperer un enregisterment par sont nom
+     * @param name
+     * @return
+     */
+    @Override
+    public CustomerEntity findByName(String name) {
+        CustomerEntity customerEntity = null;
+        try {
+            ResultSet resultSet = findbyValue("client","nom",name);
+            while( resultSet.next() ){
+                customerEntity = hydrate(resultSet);
+                customerEntity.setId(resultSet.getInt(1));
+                break;
+            }
+            resultSet.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return customerEntity;
+    }
+
+    /**
+     * permet de hydrater l'object
+     * @param resultSet
+     * @return customerEntity
+     * @throws SQLException
+     */
+    @Override
+    protected CustomerEntity hydrate(ResultSet resultSet) throws SQLException {
+        return new CustomerEntity(
+                resultSet.getString("numro_piece"),
+                resultSet.getString("nom"),
+                resultSet.getString("prenom"),
+                resultSet.getDate("date_naissance"),
+                resultSet.getString("adress"),
+                resultSet.getString("email")
+        );
     }
 
 }

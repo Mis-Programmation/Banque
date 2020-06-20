@@ -25,12 +25,11 @@ public class CompteEntity {
      *
      * @param numero
      * @param solde
-     * @param customer
      */
-    public CompteEntity( String numero, double solde, CustomerEntity customer) {
+    public CompteEntity( String numero, double solde,Date date) {
         this.numero = numero;
         this.solde = solde;
-        this.customer = customer;
+        this.createAt = date;
     }
 
     public CustomerEntity getCustomer() {
@@ -92,6 +91,6 @@ public class CompteEntity {
                 "\n numero    " + numero +
                 "\n solde     " + getBigDecimal() +
                 "\n createAt  " + createAt +
-                        "\n ---------- Proprietaire ----------" + customer;
+                "\n ---------- Proprietaire ----------" + customer;
     }
 }
