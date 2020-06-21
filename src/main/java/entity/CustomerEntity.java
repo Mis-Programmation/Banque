@@ -113,6 +113,7 @@ public class CustomerEntity {
                 "\n lastName                " + lastName  +
                 "\n dateOfTheBirth          " + dateOfTheBirth +
                 "\n address                 " + address  +
-                "\n email                   " + email + compte;
+                "\n email                   " + email +
+                "\n" +compte;
     }
 }

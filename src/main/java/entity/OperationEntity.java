@@ -8,14 +8,16 @@ public abstract class OperationEntity {
     protected int id;
     protected Date createAt;
     protected Double montant;
-    protected int type;
     protected CompteEntity compte;
 
-    public OperationEntity(int id, Date createAt, Double montant, int type) {
+    public OperationEntity(int id, Double montant, Date createAt) {
         this.id = id;
         this.createAt = createAt;
         this.montant = montant;
-        this.type = type;
+    }
+
+    public OperationEntity( Double montant) {
+        this.montant = montant;
     }
 
     public int getId() {
@@ -42,19 +44,18 @@ public abstract class OperationEntity {
         this.montant = montant;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
     public CompteEntity getCompte() {
         return compte;
     }
 
     public void setCompte(CompteEntity compte) {
         this.compte = compte;
+    }
+
+    @Override
+    public String toString() {
+        return
+            "\n createAt " + createAt +
+            "\n montant  " + montant ;
     }
 }

@@ -1,11 +1,20 @@
 package main;
+import businessLayerImp.CompteService;
 import businessLayerImp.CustomerService;
+import businessLayerInterface.CompteServiceInterface;
+import businessLayerInterface.CustomerServiceInterface;
+import daoImp.CompteDaoImp;
 import daoImp.CustomerDaoImp;
+import daoImp.OperationDaoImp;
+import daoInterface.CompteDaoInterface;
 import daoInterface.CustomerDaoInterface;
+import daoInterface.OperationDaoInterface;
+import entity.CompteEntity;
 import entity.CustomerEntity;
+import entity.PaymentEntity;
 
-import java.sql.SQLException;
-import java.util.List;
+import java.sql.Date;
+import java.util.Scanner;
 
 public class Main /* extends Application */{
 
@@ -18,33 +27,26 @@ public class Main /* extends Application */{
 //    }
 
     public static void main(String[] args) {
+        CompteDaoInterface compteDao = new CompteDaoImp();
+        CustomerDaoInterface customerDao =  new CustomerDaoImp();
+        OperationDaoInterface operationDao = new OperationDaoImp();
 
-        CustomerDaoInterface customerDao = new CustomerDaoImp();
-        try {
-            CustomerEntity customerEntity = customerDao.findCustomerWithCompte("soko");
-            System.out.println(customerEntity);
+        CompteServiceInterface compteService     =  new CompteService(compteDao,operationDao);
+        CustomerServiceInterface customerService = new CustomerService(customerDao,compteDao);
+
+        CustomerEntity customerEntity ;
+        CompteEntity compteEntity;
+
+        try{
+
+//           compteService.transfer(1000,"c2","c1");
+           compteEntity = compteDao.findAllOperationForOneCompteBynumber("c4");
+
+           System.out.println(compteEntity);
 
         }catch (Exception e){
             e.printStackTrace();
         }
-
-//        CompteDaoInterface compteDao = new CompteDaoImp();
-//        Compte compte = new Compte();
-//        compte.setCompteDao(compteDao);
-
-//        System.out.println("-------------CLIENT-----------------");
-//        for (CustomerEntity customerEntity:customerService.findAll()) {
-//            System.out.println(customerEntity);
-//            System.out.println("----------------------------------------------------");
-//        }
-
-
-//        System.out.println("-------------Compte-----------------");
-//        for (CompteEntity compteEntity: compte.findAll()) {
-//            System.out.println(compteEntity.getCustomer().getLastName());
-//        }
-
-
 
     }
 }

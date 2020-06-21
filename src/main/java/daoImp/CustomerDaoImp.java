@@ -56,7 +56,7 @@ public class CustomerDaoImp extends DaoImp implements CustomerDaoInterface {
     public CustomerEntity findCustomerWithCompte(String numro_piece) throws SQLException {
         CustomerEntity customerEntity;
         List<CompteEntity> compteEntities = new ArrayList<>();
-        customerEntity = findByName(numro_piece);
+        customerEntity = findByCin(numro_piece);
 
         if(customerEntity == null){
             return null;
@@ -79,10 +79,10 @@ public class CustomerDaoImp extends DaoImp implements CustomerDaoInterface {
      * @return
      */
     @Override
-    public CustomerEntity findByName(String name) {
+    public CustomerEntity findByCin(String cin) {
         CustomerEntity customerEntity = null;
         try {
-            ResultSet resultSet = findbyValue("client","nom",name);
+            ResultSet resultSet = findbyValue("client","numro_piece",cin);
             while( resultSet.next() ){
                 customerEntity = hydrate(resultSet);
                 customerEntity.setId(resultSet.getInt(1));

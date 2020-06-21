@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface CustomerServiceInterface {
 
-
+    public void createCompte(CustomerEntity customerEntity, CompteEntity compteEntity) throws SQLException;
 
 }

@@ -22,9 +22,9 @@ public class CompteEntity {
     }
 
     /**
-     *
      * @param numero
      * @param solde
+     * @param date
      */
     public CompteEntity( String numero, double solde,Date date) {
         this.numero = numero;
@@ -91,6 +91,8 @@ public class CompteEntity {
                 "\n numero    " + numero +
                 "\n solde     " + getBigDecimal() +
                 "\n createAt  " + createAt +
-                "\n ---------- Proprietaire ----------" + customer;
+                "\n ---------- Proprietaire ----------" +
+                "\n" + customer+
+                 "\n" + operation;
     }
 }
