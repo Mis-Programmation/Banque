@@ -3,12 +3,15 @@ package daoImp;
 import daoInterface.OperationDaoInterface;
 import entity.*;
 import helpers.DatabaseHelper;
+import org.springframework.stereotype.Component;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+
+@Component("OperationDaoImp")
 public class OperationDaoImp implements OperationDaoInterface {
 
     /**

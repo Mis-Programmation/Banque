@@ -3,26 +3,31 @@ package businessLayerImp;
 import businessLayerInterface.CompteServiceInterface;
 import daoInterface.CompteDaoInterface;
 import daoInterface.OperationDaoInterface;
-import entity.CompteEntity;
-import entity.PaymentEntity;
-import entity.TransferEntity;
-import entity.WithdrawalEntity;
+import entity.*;
 import exception.AmountInsufficient;
 import exception.NotFoundEntityException;
+import helpers.DatabaseHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+@Component("CompteServiceInterface")
 public class CompteService implements CompteServiceInterface {
+    @Autowired
     private CompteDaoInterface compteDao;
+    @Autowired
     private OperationDaoInterface operationDao;
+    private static Connection db =  DatabaseHelper.getConnection();
 
-    public CompteService(CompteDaoInterface compteDao, OperationDaoInterface operationDao) {
+    public void setCompteDao(CompteDaoInterface compteDao) {
         this.compteDao = compteDao;
-        this.operationDao = operationDao;
     }
 
-    public CompteService() {
+    public void setOperationDao(OperationDaoInterface operationDao) {
+        this.operationDao = operationDao;
     }
 
     /**
@@ -60,7 +65,7 @@ public class CompteService implements CompteServiceInterface {
     @Override
     public void transfer(double amount,String compteNumber1,String compteNumber2)
             throws SQLException, NotFoundEntityException, AmountInsufficient {
-
+        //permet de controler la somme entrer
         if(amount < 1000 || amount > 99999999){
             throw new ArithmeticException("impossible le nombre soit inferieuse a 0 ou superieur a 99999999 "+ amount);
         }
@@ -79,9 +84,14 @@ public class CompteService implements CompteServiceInterface {
 
         compteEntity1.setSolde(compteEntity1.getSolde() - amount);
         compteEntity2.setSolde(compteEntity2.getSolde() + amount);
+        try{
+            db.rollback();
+            compteDao.updateAmount(compteEntity1);
+            compteDao.updateAmount(compteEntity2);
 
-        compteDao.updateAmount(compteEntity1);
-        compteDao.updateAmount(compteEntity2);
+        }catch (SQLException e){
+            throw e;
+        }
 
         compteEntity1.setSolde(amount);
         compteEntity2.setSolde(amount);
@@ -113,9 +123,17 @@ public class CompteService implements CompteServiceInterface {
         if(compteEntity.getSolde() < amount){
             throw new AmountInsufficient("Le montant est superieur a la solde de votre compte");
         }
+
         compteEntity.setSolde(compteEntity.getSolde() - amount);
+
+        OperationEntity operation = new WithdrawalEntity();
+        operation.setCompte(compteEntity);
+        operation.setMontant(amount);
+
+
+
         compteDao.updateAmount(compteEntity);
-        operationDao.save(new WithdrawalEntity(compteEntity));
+        operationDao.save(operation);
     }
 
     @Override

@@ -3,11 +3,15 @@ package daoImp;
 import daoInterface.CompteDaoInterface;
 import entity.*;
 import helpers.DatabaseHelper;
+import org.springframework.stereotype.Component;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+@Component("CompteDaoImp")
 
 public class CompteDaoImp extends DaoImp implements CompteDaoInterface {
 

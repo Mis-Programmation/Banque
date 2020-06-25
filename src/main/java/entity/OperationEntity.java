@@ -16,7 +16,10 @@ public abstract class OperationEntity {
         this.montant = montant;
     }
 
-    public OperationEntity( Double montant) {
+    public OperationEntity() {
+    }
+
+    public OperationEntity(Double montant) {
         this.montant = montant;
     }
 

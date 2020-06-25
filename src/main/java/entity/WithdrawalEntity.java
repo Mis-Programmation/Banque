@@ -5,6 +5,9 @@ import java.util.Date;
 // retait
 public class WithdrawalEntity extends OperationEntity {
 
+    public WithdrawalEntity() {
+    }
+
     public WithdrawalEntity(int id, Double montant, Date createAt) {
         super(id, montant,createAt);
     }

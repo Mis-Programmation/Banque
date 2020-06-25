@@ -4,6 +4,8 @@ import entity.CompteEntity;
 import entity.CustomerEntity;
 import daoInterface.CustomerDaoInterface;
 import helpers.DatabaseHelper;
+import org.springframework.stereotype.Component;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +15,7 @@ import java.util.List;
 /**
  * Implementation du class access au donnee client
  */
+@Component("CustomerDaoImp")
 public class CustomerDaoImp extends DaoImp implements CustomerDaoInterface {
 
     @Override
@@ -56,8 +59,7 @@ public class CustomerDaoImp extends DaoImp implements CustomerDaoInterface {
     public CustomerEntity findCustomerWithCompte(String numro_piece) throws SQLException {
         CustomerEntity customerEntity;
         List<CompteEntity> compteEntities = new ArrayList<>();
-        customerEntity = findByCin(numro_piece);
-
+        customerEntity = findOne("numro_piece",numro_piece);
         if(customerEntity == null){
             return null;
         }
@@ -75,14 +77,14 @@ public class CustomerDaoImp extends DaoImp implements CustomerDaoInterface {
 
     /**
      * permet de recuperer un enregisterment par sont nom
-     * @param name
+     * @param cin
      * @return
      */
     @Override
-    public CustomerEntity findByCin(String cin) {
+    public CustomerEntity findOne(String key,String value) {
         CustomerEntity customerEntity = null;
         try {
-            ResultSet resultSet = findbyValue("client","numro_piece",cin);
+            ResultSet resultSet = findbyValue("client",key,value);
             while( resultSet.next() ){
                 customerEntity = hydrate(resultSet);
                 customerEntity.setId(resultSet.getInt(1));
