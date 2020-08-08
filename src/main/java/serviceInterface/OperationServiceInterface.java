@@ -1,4 +1,4 @@
-package businessLayerInterface;
+package serviceInterface;
 
 public interface OperationServiceInterface {
 

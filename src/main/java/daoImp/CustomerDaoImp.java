@@ -5,6 +5,7 @@ import entity.CustomerEntity;
 import daoInterface.CustomerDaoInterface;
 import helpers.DatabaseHelper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,11 +16,11 @@ import java.util.List;
 /**
  * Implementation du class access au donnee client
  */
-@Component("CustomerDaoImp")
+@Repository("CustomerDaoImp")
 public class CustomerDaoImp extends DaoImp implements CustomerDaoInterface {
 
     @Override
-    public void save(CustomerEntity customerEntity) throws SQLException {
+    public CustomerEntity save(CustomerEntity customerEntity) throws SQLException {
 
         String sql = "INSERT INTO client SET nom = ?," +
                 "prenom = ?,email = ?,numro_piece = ?,adress = ?," +
@@ -31,12 +32,13 @@ public class CustomerDaoImp extends DaoImp implements CustomerDaoInterface {
         preparedStatement.setString(3,customerEntity.getEmail());
         preparedStatement.setString(4,customerEntity.getNumberIdentification());
         preparedStatement.setString(5,customerEntity.getAddress());
-        preparedStatement.execute();
 
+        preparedStatement.execute();
         preparedStatement.close();
         DatabaseHelper.closeConnection();
-    }
 
+        return customerEntity;
+    }
 
     @Override
      public List<CustomerEntity> findAll() throws SQLException {
@@ -76,9 +78,10 @@ public class CustomerDaoImp extends DaoImp implements CustomerDaoInterface {
     }
 
     /**
-     * permet de recuperer un enregisterment par sont nom
-     * @param cin
-     * @return
+     *  permet de recuperer un enregisterment par sont nom
+     * @param key
+     * @param value
+     * @return CustomerEntity | null
      */
     @Override
     public CustomerEntity findOne(String key,String value) {
@@ -86,6 +89,7 @@ public class CustomerDaoImp extends DaoImp implements CustomerDaoInterface {
         try {
             ResultSet resultSet = findbyValue("client",key,value);
             while( resultSet.next() ){
+
                 customerEntity = hydrate(resultSet);
                 customerEntity.setId(resultSet.getInt(1));
                 break;

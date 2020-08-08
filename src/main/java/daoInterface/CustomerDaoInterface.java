@@ -11,7 +11,7 @@ public interface CustomerDaoInterface {
      * @param customerEntity
      * @throws SQLException
      */
-    public void save(CustomerEntity customerEntity) throws SQLException;
+    public CustomerEntity save(CustomerEntity customerEntity) throws SQLException;
     public CustomerEntity findOne(String key,String value) throws SQLException;
     public List<CustomerEntity>  findAll() throws SQLException;
     public CustomerEntity findCustomerWithCompte(String numro_piece) throws SQLException;

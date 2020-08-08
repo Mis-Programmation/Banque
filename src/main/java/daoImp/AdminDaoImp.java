@@ -3,16 +3,19 @@ package daoImp;
 import daoInterface.AdminDaoInterface;
 import entity.AdminEntity;
 import helpers.DatabaseHelper;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Component("AdminDaoImp")
+@Repository("AdminDaoImp")
 
 public class AdminDaoImp implements AdminDaoInterface {
 
+    /**
+     * Permet de recuperer un utilisateur
+     */
     @Override
     public AdminEntity getUser(String pseudo) throws SQLException {
         String sql = "SELECT * FROM users WHERE pseudo = ?";
@@ -29,6 +32,9 @@ public class AdminDaoImp implements AdminDaoInterface {
         return adminEntity;
     }
 
+    /**
+     * Permet d'ajouter un utilisateur
+     */
     @Override
     public void save(AdminEntity adminEntity) throws SQLException {
         String sql = "INSERT INTO users SET pseudo = ?,password = ?";

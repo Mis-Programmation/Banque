@@ -10,9 +10,9 @@ public interface CompteDaoInterface {
      * permet de enregister un compte
      * @param compteEntity@throws SQLException
      */
-    public void save(CompteEntity compteEntity) throws SQLException;
+    public CompteEntity save(CompteEntity compteEntity) throws SQLException;
     public CompteEntity findCompteWithCustomerByNumber(String number) throws SQLException;
     public List<CompteEntity> findAll() throws SQLException;
     public void updateAmount(CompteEntity compteEntity) throws SQLException;
-    public CompteEntity findAllOperationForOneCompteBynumber(String number) throws SQLException;
+    public CompteEntity findCompteWithAllOperationBynumber(String number) throws SQLException;
 }

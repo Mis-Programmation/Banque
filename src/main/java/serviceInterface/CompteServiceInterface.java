@@ -1,6 +1,6 @@
-package businessLayerInterface;
+package serviceInterface;
 
-import businessLayerImp.OperationService;
+import serviceImp.OperationService;
 import entity.CompteEntity;
 import exception.AmountInsufficient;
 import exception.NotFoundEntityException;
@@ -12,28 +12,14 @@ public interface CompteServiceInterface {
 
     /**
      *permet de faire des virement
-     * @param amount
      */
     public void transfer(double amount,String compteNumber1,String compteNumber2) throws SQLException, NotFoundEntityException, AmountInsufficient;
-
-    /**
-     * retrait
-     * @param amount
-     */
     public void withdraw(double amount,String compteNumber) throws SQLException, NotFoundEntityException, AmountInsufficient;
-
-    /**
-     * liste des operation
-     * @return
-     */
     public List<OperationService> getAllOperation();
-
-    /**
-     *
-     * @param amount
-     * @param compteNumber
-     * @throws SQLException
-     * @throws NotFoundEntityException
-     */
     public void payment(double amount,String compteNumber) throws SQLException, NotFoundEntityException;
+    public CompteEntity save(CompteEntity compteEntity) throws SQLException;
+    public CompteEntity findCompteWithCustomerByNumber(String number) throws SQLException;
+    public List<CompteEntity> findAll() throws SQLException;
+    public CompteEntity findCompteWithAllOperationBynumber(String number) throws SQLException;
+
 }

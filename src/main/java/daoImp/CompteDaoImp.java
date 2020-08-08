@@ -4,6 +4,7 @@ import daoInterface.CompteDaoInterface;
 import entity.*;
 import helpers.DatabaseHelper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component("CompteDaoImp")
+@Repository("CompteDaoImp")
 
 public class CompteDaoImp extends DaoImp implements CompteDaoInterface {
 
@@ -41,7 +42,7 @@ public class CompteDaoImp extends DaoImp implements CompteDaoInterface {
      * @throws SQLException
      */
     @Override
-    public void save(CompteEntity compteEntity) throws SQLException {
+    public CompteEntity save(CompteEntity compteEntity) throws SQLException {
         String sql = "INSERT INTO compte SET solde = ?," +
                 "numero = ?,client_id = ?";
         PreparedStatement preparedStatement = DatabaseHelper.getConnection().prepareStatement(sql);
@@ -51,6 +52,7 @@ public class CompteDaoImp extends DaoImp implements CompteDaoInterface {
         preparedStatement.execute();
         preparedStatement.close();
         DatabaseHelper.closeConnection();
+        return compteEntity;
     }
 
     /**
@@ -121,7 +123,7 @@ public class CompteDaoImp extends DaoImp implements CompteDaoInterface {
      * @throws SQLException
      */
     @Override
-    public CompteEntity findAllOperationForOneCompteBynumber(String number) throws SQLException
+    public CompteEntity findCompteWithAllOperationBynumber(String number) throws SQLException
     {
         CompteEntity compteEntity = null;
         List<OperationEntity> operationEntities = new ArrayList<>();
@@ -129,15 +131,15 @@ public class CompteDaoImp extends DaoImp implements CompteDaoInterface {
 
         ResultSet resultSet =  findbyValue("compte","numero",number);
         while (resultSet.next()){
-         compteEntity =  hydrate(resultSet);
-         compteEntity.setId(resultSet.getInt(1));
+             compteEntity =  hydrate(resultSet);
+             compteEntity.setId(resultSet.getInt(1));
         }
 
         if(compteEntity == null){
             return null;
         }
 
-         resultSet =  findbyValue("operation","compte_id",String.valueOf(compteEntity.getId()));
+        resultSet =  findbyValue("operation","compte_id",String.valueOf(compteEntity.getId()));
         while (resultSet.next()){
             if(resultSet.getInt("type") == 1){
                 operation = new PaymentEntity(
@@ -159,6 +161,7 @@ public class CompteDaoImp extends DaoImp implements CompteDaoInterface {
                         resultSet.getDate("date_operation")
                 );
             }
+
             if(operation != null){
                 operationEntities.add(operation);
             }

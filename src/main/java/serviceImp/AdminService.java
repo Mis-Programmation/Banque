@@ -1,6 +1,7 @@
-package businessLayerImp;
+package serviceImp;
 
-import businessLayerInterface.AdminServiceInterface;
+import org.springframework.stereotype.Service;
+import serviceInterface.AdminServiceInterface;
 import daoInterface.AdminDaoInterface;
 import entity.AdminEntity;
 import exception.IncorrectPasswordException;
@@ -10,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
-@Component("AdminService")
+@Service("AdminService")
 public class AdminService implements AdminServiceInterface {
 
     @Autowired
@@ -24,9 +25,9 @@ public class AdminService implements AdminServiceInterface {
     public AdminEntity login(String login, String password) throws SQLException, NotFoundEntityException, IncorrectPasswordException {
         AdminEntity adminEntity = adminDao.getUser(login);
          if(adminEntity == null){
-            throw new NotFoundEntityException();
+            throw new NotFoundEntityException("cette utilisateur existe pas");
          }
-        if(!passworVerifie(password, adminEntity.getPassword())){
+        if(!passworVerify(password, adminEntity.getPassword())){
             throw new IncorrectPasswordException("Les mots de passe ne corresponde pas");
         }
         return adminEntity;
@@ -43,7 +44,7 @@ public class AdminService implements AdminServiceInterface {
     }
 
     /**
-     * permet d'encripte le mot de passe
+     * permet d'hasher le mot de passe
      * @param password
      * @return
      */
@@ -54,20 +55,16 @@ public class AdminService implements AdminServiceInterface {
 
     /**
      * permet de verifier le mot de passe
-     * @param passwordPlaint
-     * @param password
-     * @return
      */
     @Override
-    public boolean passworVerifie(String passwordPlaint,String password) {
+    public boolean passworVerify(String passwordPlaint,String password) {
         return BCrypt.checkpw(passwordPlaint,password);
     }
 
     @Override
-    public void createNewUser(String login, String password) throws SQLException {
-        AdminEntity adminEntity;
-        String pwd = passWordHash(password);
-        adminEntity = new AdminEntity(login,pwd);
+    public void save(AdminEntity adminEntity) throws SQLException {
+        String pwd = passWordHash(adminEntity.getPassword());
+        adminEntity.setPassword(pwd);
         adminDao.save(adminEntity);
     }
 }

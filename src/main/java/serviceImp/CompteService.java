@@ -1,26 +1,22 @@
-package businessLayerImp;
+package serviceImp;
 
-import businessLayerInterface.CompteServiceInterface;
+import org.springframework.stereotype.Service;
+import serviceInterface.CompteServiceInterface;
 import daoInterface.CompteDaoInterface;
 import daoInterface.OperationDaoInterface;
 import entity.*;
 import exception.AmountInsufficient;
 import exception.NotFoundEntityException;
-import helpers.DatabaseHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@Component("CompteServiceInterface")
+@Service("CompteServiceInterface")
 public class CompteService implements CompteServiceInterface {
     @Autowired
     private CompteDaoInterface compteDao;
     @Autowired
     private OperationDaoInterface operationDao;
-    private static Connection db =  DatabaseHelper.getConnection();
 
     public void setCompteDao(CompteDaoInterface compteDao) {
         this.compteDao = compteDao;
@@ -32,10 +28,6 @@ public class CompteService implements CompteServiceInterface {
 
     /**
      * permet de faire un versement
-     * @param amount
-     * @param compteNumber
-     * @return
-     * @throws SQLException
      */
     @Override
     public void payment(double amount,String compteNumber) throws SQLException, NotFoundEntityException {
@@ -53,15 +45,40 @@ public class CompteService implements CompteServiceInterface {
 
     }
 
+    /** Permet d'ajouter un compte */
+    @Override
+    public CompteEntity save(CompteEntity compteEntity) throws SQLException {
+        return compteDao.save(compteEntity);
+    }
+
+    /**
+     * Permet de chercher un compte avec son propretaire
+     */
+    @Override
+    public CompteEntity findCompteWithCustomerByNumber(String number) throws SQLException {
+        return compteDao.findCompteWithCustomerByNumber(number);
+    }
+
+    /**
+     * permet d'afficher tout les comptes
+     */
+    @Override
+    public List<CompteEntity> findAll() throws SQLException {
+        return compteDao.findAll();
+    }
+
+    /**
+     * permet de rechercher un compte avec tout les operations
+     * @param number
+     */
+    @Override
+    public CompteEntity findCompteWithAllOperationBynumber(String number) throws SQLException {
+        return compteDao.findCompteWithCustomerByNumber(number);
+    }
+
     /**
      * permet de faire un tranfert
-     * @param amount
-     * @param compteNumber1
-     * @param compteNumber2
-     * @throws SQLException
-     * @throws NotFoundEntityException
-     * @throws AmountInsufficient
-     */
+    */
     @Override
     public void transfer(double amount,String compteNumber1,String compteNumber2)
             throws SQLException, NotFoundEntityException, AmountInsufficient {
@@ -85,7 +102,6 @@ public class CompteService implements CompteServiceInterface {
         compteEntity1.setSolde(compteEntity1.getSolde() - amount);
         compteEntity2.setSolde(compteEntity2.getSolde() + amount);
         try{
-            db.rollback();
             compteDao.updateAmount(compteEntity1);
             compteDao.updateAmount(compteEntity2);
 
@@ -103,12 +119,6 @@ public class CompteService implements CompteServiceInterface {
 
     /**
      * Permet de faire un retait
-     * @param amount
-     * @param compteNumber
-     * @throws SQLException
-     * @throws NotFoundEntityException
-     * @throws AmountInsufficient
-     *
      */
     @Override
     public void withdraw(double amount,String compteNumber) throws SQLException, NotFoundEntityException, AmountInsufficient {
@@ -140,6 +150,5 @@ public class CompteService implements CompteServiceInterface {
     public List<OperationService> getAllOperation() {
         return null;
     }
-
 
 }

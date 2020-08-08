@@ -1,4 +1,4 @@
-package businessLayerInterface;
+package serviceInterface;
 
 import entity.AdminEntity;
 import exception.IncorrectPasswordException;
@@ -12,6 +12,6 @@ public interface AdminServiceInterface {
     public void logout();
     public boolean isConnected();
     public String passWordHash(String password);
-    public boolean passworVerifie(String passwordPlaint,String password);
-    public void createNewUser(String login, String password) throws SQLException;
+    public boolean passworVerify(String passwordPlaint,String password);
+    public void save(AdminEntity adminEntity) throws SQLException;
 }

@@ -1,0 +1,17 @@
+.side_bar
+{
+    -fx-background-color:#062e45;
+
+}
+.display_information_primary{
+    -fx-background-color:#ffffff;
+}
+.display_information_bar
+{
+    -fx-background-color:#2f3031;
+    -fx-padding: 8px;
+}
+.body
+{
+    -fx-background-color:#090a0a;
+}

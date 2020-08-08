@@ -4,6 +4,7 @@ import daoInterface.OperationDaoInterface;
 import entity.*;
 import helpers.DatabaseHelper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,12 +12,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-@Component("OperationDaoImp")
+@Repository("OperationDaoImp")
 public class OperationDaoImp implements OperationDaoInterface {
 
     /**
      * permet de metre ajour le solde
-     * @param operationEntity
      */
     @Override
     public void save(OperationEntity operationEntity) throws SQLException {
