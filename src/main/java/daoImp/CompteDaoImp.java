@@ -55,6 +55,16 @@ public class CompteDaoImp extends DaoImp implements CompteDaoInterface {
         return compteEntity;
     }
 
+    // permet de recuperer un seule compte
+    public CompteEntity findOne(String key,String value) throws SQLException {
+        CompteEntity compteEntity = null;
+        ResultSet resultSet = this.findbyValue("compte",key,value);
+        while (resultSet.next()){
+           compteEntity = hydrate(resultSet);
+        }
+        return compteEntity;
+    }
+
     /**
      * permet de rechercher un compte avec sont proprios
      * @param number
@@ -86,6 +96,34 @@ public class CompteDaoImp extends DaoImp implements CompteDaoInterface {
 
         }
         return compteEntity;
+    }
+
+    @Override
+    public List<CompteEntity> findCompteWithCustomer() throws SQLException {
+        CompteEntity compteEntity = null;
+        List<CompteEntity> compteEntities = new ArrayList<>();
+        String sql = "SELECT c.solde,c.numero,c.date_creation, c.id as compte_id , cl.* FROM compte as c,client as cl WHERE c.client_id = cl.id"
+                ;
+
+        PreparedStatement preparedStatement = DatabaseHelper.getConnection().prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            compteEntity = hydrate(resultSet);
+            compteEntity.setId(resultSet.getInt("compte_id"));
+            compteEntity.setCustomer( new CustomerEntity(
+                            resultSet.getString("numro_piece"),
+                            resultSet.getString("nom"),
+                            resultSet.getString("prenom"),
+                            resultSet.getDate("date_naissance"),
+                            resultSet.getString("adress"),
+                            resultSet.getString("email")
+                    )
+            );
+            compteEntities.add(compteEntity);
+
+        }
+        return compteEntities;
     }
 
     /**

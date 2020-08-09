@@ -1,17 +1,19 @@
 package controllers;
-
-import daoImp.CustomerDaoImp;
-import daoInterface.CustomerDaoInterface;
 import entity.CustomerEntity;
 import exception.FoundEntityException;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.fxml.LoadException;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
@@ -21,10 +23,14 @@ import serviceInterface.CustomerServiceInterface;
 import utils.AlertUtils;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class CustomerController {
+public class CustomerController implements Initializable {
 
     @FXML
     private TextField numberIdentification;
@@ -44,12 +50,43 @@ public class CustomerController {
     @FXML
     private DatePicker dateOfTheBirth;
 
-    private CustomerServiceInterface customerServiceInterface;
+    @FXML
+    private TableColumn<CustomerEntity, Integer> idCell;
+    @FXML
+    private TableColumn<CustomerEntity, String> firstNameCell;
+    @FXML
+    private TableColumn<CustomerEntity, String> lastNameCell;
+    @FXML
+    private TableColumn<CustomerEntity, String> emailCell;
+    @FXML
+    private TableColumn<CustomerEntity, String> adressCell;
+    @FXML
+    private TableColumn<CustomerEntity, Date> dateOfTheBirthCell;
+    @FXML
+    private TableView<CustomerEntity> tableCustomer;
 
+
+    private CustomerServiceInterface customerServiceInterface;
+    private List<CustomerEntity> customerEntities;
     public CustomerController()
     {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext("serviceImp","daoImp");
         this.customerServiceInterface = applicationContext.getBean(CustomerServiceInterface.class);
+    }
+
+    @FXML
+    void seeListe(ActionEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/view/DashbordCustomer.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root);
+        Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
+        window.setTitle("Dashboard");
+        window.setScene(scene);
+        window.show();
     }
 
     @FXML
@@ -99,19 +136,34 @@ public class CustomerController {
         }
     }
 
-    @FXML
-    void seeListe(ActionEvent event) {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/view/DashbordCustomer.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene scene = new Scene(root);
-        Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
-        window.setTitle("Dashboard");
-        window.setScene(scene);
-        window.show();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initTableCustomer();
     }
 
+    /**
+     * permet d'initialier le tableau de client
+     */
+    private void initTableCustomer()
+    {
+        if(null != this.idCell){
+            try {
+                customerEntities = customerServiceInterface.findAll();
+            } catch (SQLException e) {
+                AlertUtils.showMessage("Erreur de recuperation des donnees",
+                        "ok",
+                        "Erreur",
+                        "WARNING");
+            }
+
+            this.idCell.setCellValueFactory( e -> new ReadOnlyObjectWrapper<>(e.getValue().getId())  );
+            this.firstNameCell.setCellValueFactory( cell -> new ReadOnlyObjectWrapper<>( cell.getValue().getFirstName() ));
+            this.lastNameCell.setCellValueFactory( event -> new ReadOnlyObjectWrapper<>(event.getValue().getLastName()) );
+            this.idCell.setCellValueFactory( event -> new ReadOnlyObjectWrapper<>(event.getValue().getId()) );
+            this.emailCell.setCellValueFactory( event -> new ReadOnlyObjectWrapper<>( event.getValue().getEmail()) );
+            this.adressCell.setCellValueFactory( event -> new ReadOnlyObjectWrapper<>( event.getValue().getAddress()) );
+            this.dateOfTheBirthCell.setCellValueFactory( event -> new ReadOnlyObjectWrapper<>( event.getValue().getDateOfTheBirth()) );
+            this.tableCustomer.setItems(FXCollections.observableArrayList(customerEntities));
+        }
+    }
 }

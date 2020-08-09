@@ -1,5 +1,6 @@
 package serviceInterface;
 
+import exception.FoundEntityException;
 import serviceImp.OperationService;
 import entity.CompteEntity;
 import exception.AmountInsufficient;
@@ -16,8 +17,9 @@ public interface CompteServiceInterface {
     public void transfer(double amount,String compteNumber1,String compteNumber2) throws SQLException, NotFoundEntityException, AmountInsufficient;
     public void withdraw(double amount,String compteNumber) throws SQLException, NotFoundEntityException, AmountInsufficient;
     public List<OperationService> getAllOperation();
+    public List<CompteEntity> findCompteWithCustomer() throws SQLException;
     public void payment(double amount,String compteNumber) throws SQLException, NotFoundEntityException;
-    public CompteEntity save(CompteEntity compteEntity) throws SQLException;
+    public CompteEntity save(CompteEntity compteEntity) throws SQLException, FoundEntityException;
     public CompteEntity findCompteWithCustomerByNumber(String number) throws SQLException;
     public List<CompteEntity> findAll() throws SQLException;
     public CompteEntity findCompteWithAllOperationBynumber(String number) throws SQLException;

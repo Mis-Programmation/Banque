@@ -8,7 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+
 
 import java.io.IOException;
 
@@ -22,7 +22,13 @@ public class DashbordCustomerController {
     private Button btnListeCustomer;
 
     @FXML
+    private Button btnAddCompte;
+
+    @FXML
     private AnchorPane contentLayout;
+
+    @FXML
+    private Button btnListeCompte;
 
     /**
      * permet de changer entre les views
@@ -31,33 +37,27 @@ public class DashbordCustomerController {
      */
     @FXML
     void handleClicks(ActionEvent event) throws IOException {
-        if(event.getSource() == btnAddCustomer){
+
+        if (event.getSource() == btnAddCustomer) {
             // charger le views
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/CustomerView/AddCustomer.fxml"));
             // pusher dans le clientLayout comme enfant
             contentLayout.getChildren().setAll(anchorPane);
-        }else if(event.getSource() == btnListeCustomer)
-        {
+        } else if (event.getSource() == btnListeCustomer) {
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/CustomerView/listeCustomer.fxml"));
             contentLayout.getChildren().setAll(anchorPane);
+        } else if (event.getSource() == btnAddCompte) {
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/CompteView/addCompte.fxml"));
+            contentLayout.getChildren().setAll(anchorPane);
+        } else if (event.getSource() == btnListeCompte) {
+            {
+                AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/CompteView/listeCompte.fxml"));
+                contentLayout.getChildren().setAll(anchorPane);
+            }
         }
+
     }
 
-//    @FXML
-//    void onAddCustomer(ActionEvent event) {
-//        Parent root = null;
-//        try {
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-    //    root = FXMLLoader.load(getClass().getResource("/view/DashbordCustomer.fxml"));
-//        Scene scene = new Scene(root);
-//        Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
-//        window.setTitle("Dashboard");
-//        window.setScene(scene);
-//        window.show();
-//    }
 
 
 

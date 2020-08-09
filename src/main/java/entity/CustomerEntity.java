@@ -107,13 +107,6 @@ public class CustomerEntity {
 
     @Override
     public String toString() {
-        return
-                "\n numberIdentification    " + numberIdentification +
-                "\n firstName               " + firstName +
-                "\n lastName                " + lastName  +
-                "\n dateOfTheBirth          " + dateOfTheBirth +
-                "\n address                 " + address  +
-                "\n email                   " + email +
-                "\n" +compte;
+        return this.getLastName();
     }
 }

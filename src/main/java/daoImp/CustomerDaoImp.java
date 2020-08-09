@@ -50,6 +50,7 @@ public class CustomerDaoImp extends DaoImp implements CustomerDaoInterface {
 
             while(resultSet.next()){
                 customerEntity = hydrate(resultSet);
+                customerEntity.setId(resultSet.getInt("id"));
                 customerEntities.add(customerEntity);
             }
             resultSet.close();

@@ -37,10 +37,10 @@
             </Pane>
             <Pane layoutX="10.0" layoutY="318.0" prefHeight="43.0" prefWidth="210.0" style="-fx-background-color: #fff;">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="210.0" text="Ouvrir un compte" />
+                  <Button fx:id="btnAddCompte" mnemonicParsing="false" onAction="#handleClicks" prefHeight="43.0" prefWidth="210.0" text="Ouvrir un compte" />
                </children>
             </Pane>
-            <Button layoutX="10.0" layoutY="384.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="210.0" text="Liste Compte" />
+            <Button fx:id="btnListeCompte" layoutX="10.0" layoutY="384.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="43.0" prefWidth="210.0" text="Liste Compte" />
          </children></Pane>
       <AnchorPane layoutX="209.0" prefHeight="200.0" prefWidth="815.0" styleClass="display_information_bar" AnchorPane.leftAnchor="209.0" AnchorPane.rightAnchor="0.0">
          <children>

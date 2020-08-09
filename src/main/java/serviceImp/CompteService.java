@@ -1,5 +1,6 @@
 package serviceImp;
 
+import exception.FoundEntityException;
 import org.springframework.stereotype.Service;
 import serviceInterface.CompteServiceInterface;
 import daoInterface.CompteDaoInterface;
@@ -47,7 +48,10 @@ public class CompteService implements CompteServiceInterface {
 
     /** Permet d'ajouter un compte */
     @Override
-    public CompteEntity save(CompteEntity compteEntity) throws SQLException {
+    public CompteEntity save(CompteEntity compteEntity) throws SQLException, FoundEntityException {
+        if(null != compteDao.findOne("numero",compteEntity.getNumero())){
+            throw new FoundEntityException("ce client existe deja");
+        }
         return compteDao.save(compteEntity);
     }
 
@@ -149,6 +153,11 @@ public class CompteService implements CompteServiceInterface {
     @Override
     public List<OperationService> getAllOperation() {
         return null;
+    }
+
+    @Override
+    public List<CompteEntity> findCompteWithCustomer() throws SQLException {
+       return compteDao.findCompteWithCustomer();
     }
 
 }
