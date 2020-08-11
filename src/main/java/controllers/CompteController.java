@@ -9,10 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -38,6 +35,9 @@ public class CompteController implements Initializable {
         this.compteServiceInterface = applicationContext.getBean(CompteServiceInterface.class);
     }
 
+
+    @FXML
+    private Button btnHandleSubmit;
 
     @FXML
     private AnchorPane contentLayout;
@@ -69,6 +69,7 @@ public class CompteController implements Initializable {
     @FXML
     void handleSubmit(ActionEvent event) {
         addCompte();
+        btnHandleSubmit.setDisable(false);
     }
 
     // permet d'ajouter un compte
@@ -125,6 +126,7 @@ public class CompteController implements Initializable {
             double nb =  Math.random() * 1000;
             numero.setText("CP"+(int)nb);
             numero.setDisable(true);
+            numero.setVisible(false);
         }
     }
     private void initTableCompte()
@@ -144,4 +146,6 @@ public class CompteController implements Initializable {
             }
         }
     }
+
+
 }

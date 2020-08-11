@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" styleClass="body" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashbordCustomerController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" styleClass="body" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashbordController">
    <children>
       <Pane layoutX="-10.0" prefHeight="700.0" prefWidth="220.0" styleClass="side_bar" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-10.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -32,7 +32,7 @@
             </Pane>
             <Pane layoutX="10.0" layoutY="252.0" prefHeight="43.0" prefWidth="210.0" style="-fx-background-color: #fff;">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="210.0" text="Operation" />
+                  <Button fx:id="btnOperation" mnemonicParsing="false" onAction="#handleClicks" prefHeight="43.0" prefWidth="210.0" text="Operation" />
                </children>
             </Pane>
             <Pane layoutX="10.0" layoutY="318.0" prefHeight="43.0" prefWidth="210.0" style="-fx-background-color: #fff;">

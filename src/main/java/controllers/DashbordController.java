@@ -12,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class DashbordCustomerController {
+public class DashbordController {
 
 
     @FXML
@@ -29,6 +29,9 @@ public class DashbordCustomerController {
 
     @FXML
     private Button btnListeCompte;
+
+    @FXML
+    private Button btnOperation;
 
     /**
      * permet de changer entre les views
@@ -50,12 +53,13 @@ public class DashbordCustomerController {
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/CompteView/addCompte.fxml"));
             contentLayout.getChildren().setAll(anchorPane);
         } else if (event.getSource() == btnListeCompte) {
-            {
                 AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/CompteView/listeCompte.fxml"));
                 contentLayout.getChildren().setAll(anchorPane);
-            }
+        }else if(event.getSource() == btnOperation)
+        {
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/Operation/operationView.fxml"));
+            contentLayout.getChildren().setAll(anchorPane);
         }
-
     }
 
 

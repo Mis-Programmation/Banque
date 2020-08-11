@@ -41,7 +41,7 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </opaqueInsets>
             </VBox>
-            <Button layoutX="297.0" layoutY="303.0" mnemonicParsing="false" onAction="#handleSubmit" prefHeight="43.0" prefWidth="250.0" style="-fx-background-color: rgb(65, 217, 121); -fx-font-weight: 700;" text="Valide" textAlignment="CENTER" textFill="#e6eee5">
+            <Button fx:id="btnHandleSubmit" layoutX="297.0" layoutY="303.0" mnemonicParsing="false" onAction="#handleSubmit" prefHeight="43.0" prefWidth="250.0" style="-fx-background-color: rgb(65, 217, 121); -fx-font-weight: 700;" text="Valide" textAlignment="CENTER" textFill="#e6eee5">
                <font>
                   <Font size="18.0" />
                </font>

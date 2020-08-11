@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.fxml.LoadException;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -78,7 +77,7 @@ public class CustomerController implements Initializable {
     void seeListe(ActionEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/view/DashbordCustomer.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/view/Dashbord.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -149,7 +148,9 @@ public class CustomerController implements Initializable {
         if(null != this.idCell){
             try {
                 customerEntities = customerServiceInterface.findAll();
-            } catch (SQLException e) {
+            }
+
+            catch (SQLException e) {
                 AlertUtils.showMessage("Erreur de recuperation des donnees",
                         "ok",
                         "Erreur",

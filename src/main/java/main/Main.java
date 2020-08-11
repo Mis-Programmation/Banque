@@ -1,25 +1,16 @@
 package main;
-import daoInterface.CompteDaoInterface;
-import daoInterface.CustomerDaoInterface;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import serviceImp.CompteService;
-import serviceInterface.CompteServiceInterface;
-import serviceInterface.CustomerServiceInterface;
-
-import java.sql.SQLException;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/DashbordCustomer.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/Dashbord.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("Dashboard");
         primaryStage.setScene(scene);
