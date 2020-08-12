@@ -29,7 +29,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CustomerController implements Initializable {
+public class CustomerController extends AbstractController implements Initializable {
 
     @FXML
     private TextField numberIdentification;
@@ -64,14 +64,7 @@ public class CustomerController implements Initializable {
     @FXML
     private TableView<CustomerEntity> tableCustomer;
 
-
-    private CustomerServiceInterface customerServiceInterface;
     private List<CustomerEntity> customerEntities;
-    public CustomerController()
-    {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext("serviceImp","daoImp");
-        this.customerServiceInterface = applicationContext.getBean(CustomerServiceInterface.class);
-    }
 
     @FXML
     void seeListe(ActionEvent event) {
@@ -92,7 +85,6 @@ public class CustomerController implements Initializable {
     void handleSubmit(ActionEvent event) {
         addCustomer();
     }
-
     public void addCustomer()
     {
         CustomerEntity customerEntity  = new CustomerEntity();
@@ -122,6 +114,11 @@ public class CustomerController implements Initializable {
                     "ok",
                     "le client a bien ete enregistrer",
                     "INFORMATION");
+            firstName.setText("");
+            lastName.setText("");
+            email.setText("");
+            address.setText("");
+            numberIdentification.setText("");
         } catch (SQLException e) {
             AlertUtils.showMessage("enregistrement",
                     "ok",

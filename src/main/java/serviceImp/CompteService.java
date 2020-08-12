@@ -88,19 +88,19 @@ public class CompteService implements CompteServiceInterface {
             throws SQLException, NotFoundEntityException, AmountInsufficient {
         //permet de controler la somme entrer
         if(amount < 1000 || amount > 99999999){
-            throw new ArithmeticException("impossible le nombre soit inferieuse a 0 ou superieur a 99999999 "+ amount);
+            throw new ArithmeticException("impossible le nombre soit inferieur a 0 ou superieur a 99999999 "+ amount);
         }
 
         CompteEntity compteEntity1 = compteDao.findCompteWithCustomerByNumber(compteNumber1);
         if(compteEntity1 == null){
-            throw new NotFoundEntityException("Ce compte n'existe pas "+ compteEntity1);
+            throw new NotFoundEntityException("Ce compte n'existe pas "+ compteNumber1);
         }
         if(compteEntity1.getSolde() < amount){
             throw new AmountInsufficient("Le montant est superieur a la solde de votre compte");
         }
         CompteEntity compteEntity2 = compteDao.findCompteWithCustomerByNumber(compteNumber2);
         if(compteEntity2 == null){
-            throw new NotFoundEntityException("Ce compte n'existe pas "+ compteEntity2);
+            throw new NotFoundEntityException("Ce compte n'existe pas "+ compteNumber2);
         }
 
         compteEntity1.setSolde(compteEntity1.getSolde() - amount);

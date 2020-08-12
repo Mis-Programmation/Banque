@@ -24,17 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CompteController implements Initializable {
-
-    private CustomerServiceInterface customerServiceInterface;
-    private CompteServiceInterface compteServiceInterface;
-
-    public CompteController() {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext("serviceImp","daoImp");
-        this.customerServiceInterface = applicationContext.getBean(CustomerServiceInterface.class);
-        this.compteServiceInterface = applicationContext.getBean(CompteServiceInterface.class);
-    }
-
+public class CompteController extends AbstractController implements Initializable {
 
     @FXML
     private Button btnHandleSubmit;
@@ -126,7 +116,6 @@ public class CompteController implements Initializable {
             double nb =  Math.random() * 1000;
             numero.setText("CP"+(int)nb);
             numero.setDisable(true);
-            numero.setVisible(false);
         }
     }
     private void initTableCompte()
