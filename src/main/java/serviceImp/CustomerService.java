@@ -1,6 +1,7 @@
 package serviceImp;
 
 import exception.FoundEntityException;
+import exception.NotFoundEntityException;
 import org.springframework.stereotype.Service;
 import serviceInterface.CustomerServiceInterface;
 import daoInterface.CompteDaoInterface;
@@ -51,8 +52,12 @@ public class CustomerService implements CustomerServiceInterface {
     }
 
     @Override
-    public CustomerEntity findCustomerWithCompte(String numro_piece) throws SQLException {
-        return customerDao.findCustomerWithCompte(numro_piece);
+    public CustomerEntity findCustomerWithCompte(String numro_piece) throws SQLException, NotFoundEntityException {
+        CustomerEntity customerEntity = customerDao.findCustomerWithCompte(numro_piece);
+        if(null == customerEntity){
+            throw new NotFoundEntityException("Ce client n'existe pas");
+        }
+        return customerEntity;
     }
 
 }

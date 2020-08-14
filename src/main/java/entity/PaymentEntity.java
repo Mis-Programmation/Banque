@@ -1,10 +1,15 @@
 package entity;
 
-import java.util.Date;
+import java.sql.Date;
 
- public final class PaymentEntity extends OperationEntity {
+public class PaymentEntity extends OperationEntity {
     public PaymentEntity(int id, Double montant, Date createAt) {
         super(id, montant, createAt);
+    }
+
+    @Override
+    public String getoperationType() {
+        return "Versement";
     }
 
     public PaymentEntity(CompteEntity compteEntity) {

@@ -1,7 +1,6 @@
 package entity;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 
 public abstract class OperationEntity {
 
@@ -54,6 +53,8 @@ public abstract class OperationEntity {
     public void setCompte(CompteEntity compte) {
         this.compte = compte;
     }
+
+    public abstract String getoperationType();
 
     @Override
     public String toString() {

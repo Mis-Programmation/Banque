@@ -107,6 +107,6 @@ public class CustomerEntity {
 
     @Override
     public String toString() {
-        return this.getLastName();
+        return this.getFirstName() + ' '+ this.getLastName();
     }
 }

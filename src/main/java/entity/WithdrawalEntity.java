@@ -1,11 +1,16 @@
 package entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 // retait
 public class WithdrawalEntity extends OperationEntity {
 
     public WithdrawalEntity() {
+    }
+
+    @Override
+    public String getoperationType() {
+        return "Retait";
     }
 
     public WithdrawalEntity(int id, Double montant, Date createAt) {

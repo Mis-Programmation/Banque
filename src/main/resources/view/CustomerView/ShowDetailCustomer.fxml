@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomerController">
+   <children>
+      <Pane prefHeight="132.0" prefWidth="807.0" style="-fx-background-color: rgb(168, 157, 128);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox layoutX="38.0" layoutY="14.0" prefHeight="22.0" prefWidth="300.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="Nom      :" wrappingWidth="90.193359375">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="firstnameTfd" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="CP4785" wrappingWidth="156.193359375">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox layoutX="38.0" layoutY="51.0" prefHeight="22.0" prefWidth="306.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="Prenom :" wrappingWidth="89.193359375">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="lastnameTfd" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="781111" wrappingWidth="152.193359375">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox layoutX="38.0" layoutY="84.0" prefHeight="21.0" prefWidth="342.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="CIN       :" wrappingWidth="89.193359375">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="cinTfd" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="CP4785" wrappingWidth="179.193359375">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox layoutX="396.0" layoutY="14.0" prefHeight="43.0" prefWidth="378.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="Email    :" wrappingWidth="87.193359375">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="emailTfd" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="mamadousokp@gmail.com" wrappingWidth="261.193359375">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox layoutX="396.0" layoutY="62.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="Adress :" wrappingWidth="62.193359375">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="adressTfd" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="CP4785" wrappingWidth="187.193359375">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Text layoutX="198.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La liste des comptes du clients" wrappingWidth="438.67578125">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tableCompte" layoutX="-2.0" layoutY="192.0" prefHeight="376.0" prefWidth="821.0">
+        <columns>
+          <TableColumn fx:id="compteColumn" prefWidth="234.0" text="Nom" />
+          <TableColumn fx:id="soldeColumn" prefWidth="289.0" text="Solde" />
+            <TableColumn fx:id="createdColumn" prefWidth="297.0" text="Date de creation" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

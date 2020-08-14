@@ -1,7 +1,6 @@
 .side_bar
 {
-    -fx-background-color:#062e45;
-
+    -fx-background-color:rgb(4, 201, 109);
 }
 .display_information_primary{
     -fx-background-color:#ffffff;
@@ -14,4 +13,9 @@
 .body
 {
     -fx-background-color:#090a0a;
+}
+
+.btn:hover
+{
+    -fx-background-color:#fff;
 }

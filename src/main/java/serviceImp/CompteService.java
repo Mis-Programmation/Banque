@@ -77,7 +77,7 @@ public class CompteService implements CompteServiceInterface {
      */
     @Override
     public CompteEntity findCompteWithAllOperationBynumber(String number) throws SQLException {
-        return compteDao.findCompteWithCustomerByNumber(number);
+        return compteDao.findCompteWithAllOperationBynumber(number);
     }
 
     /**

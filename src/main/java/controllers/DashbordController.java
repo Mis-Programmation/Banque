@@ -3,14 +3,20 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class DashbordController {
+public class DashbordController implements Initializable {
 
+
+    @FXML
+    private Button search;
 
     @FXML
     private Button btnAddCustomer;
@@ -56,12 +62,22 @@ public class DashbordController {
         {
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/Operation/operationView.fxml"));
             contentLayout.getChildren().setAll(anchorPane);
+        }else if(event.getSource() == search){
+            contentLayout.setVisible(true);
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/CompteView/ShowDetailCompte.fxml"));
+            contentLayout.getChildren().setAll(anchorPane);
+
         }
     }
 
-
-
-
-
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        AnchorPane anchorPane = null;
+        try {
+            anchorPane = FXMLLoader.load(getClass().getResource("/view/CompteView/ShowDetailCompte.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        contentLayout.getChildren().setAll(anchorPane);
+    }
 }

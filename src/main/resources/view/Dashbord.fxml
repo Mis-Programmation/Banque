@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -9,48 +8,46 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" styleClass="body" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashbordController">
    <children>
-      <Pane layoutX="-10.0" prefHeight="700.0" prefWidth="220.0" styleClass="side_bar" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-10.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="-10.0" prefHeight="700.0" prefWidth="227.0" style="-fx-background-color: rgb(92, 87, 70);" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-10.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane layoutX="10.0" prefHeight="103.0" prefWidth="210.0" style="-fx-background-color: #fff;">
+            <Pane layoutX="10.0" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: rgb(237, 189, 69);">
                <children>
-                  <Text layoutX="47.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SOKO" textAlignment="CENTER" wrappingWidth="116.556640625">
+                  <Text fill="#fff4f4" layoutX="20.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SOKO BANK" textAlignment="CENTER" wrappingWidth="177.556640625">
                      <font>
                         <Font name="Algerian" size="32.0" />
                      </font>
                   </Text>
                </children>
             </Pane>
-            <Pane layoutX="10.0" layoutY="126.0" prefHeight="43.0" prefWidth="210.0" style="-fx-background-color: #fff;">
-               <children>
-                  <Button fx:id="btnAddCustomer" mnemonicParsing="false" onAction="#handleClicks" prefHeight="43.0" prefWidth="210.0" text="Ajouter Client" />
-               </children>
-            </Pane>
-            <Pane layoutX="10.0" layoutY="188.0" prefHeight="43.0" prefWidth="210.0" style="-fx-background-color: #fff;">
-               <children>
-                  <Button fx:id="btnListeCustomer" mnemonicParsing="false" onAction="#handleClicks" prefHeight="43.0" prefWidth="210.0" text="Liste Clients" />
-               </children>
-            </Pane>
-            <Pane layoutX="10.0" layoutY="252.0" prefHeight="43.0" prefWidth="210.0" style="-fx-background-color: #fff;">
-               <children>
-                  <Button fx:id="btnOperation" mnemonicParsing="false" onAction="#handleClicks" prefHeight="43.0" prefWidth="210.0" text="Operation" />
-               </children>
-            </Pane>
-            <Pane layoutX="10.0" layoutY="318.0" prefHeight="43.0" prefWidth="210.0" style="-fx-background-color: #fff;">
-               <children>
-                  <Button fx:id="btnAddCompte" mnemonicParsing="false" onAction="#handleClicks" prefHeight="43.0" prefWidth="210.0" text="Ouvrir un compte" />
-               </children>
-            </Pane>
-            <Button fx:id="btnListeCompte" layoutX="10.0" layoutY="384.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="43.0" prefWidth="210.0" text="Liste Compte" />
+            <Button fx:id="btnListeCompte" alignment="TOP_CENTER" layoutX="-10.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="44.0" prefWidth="237.0" style="-fx-background-color: rgb(20, 19, 8);" styleClass="btn" stylesheets="@../css/style.css" text="Liste Compte" textFill="#ebe8e8ba">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Button>
+            <Button fx:id="search" alignment="TOP_CENTER" layoutX="-5.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="44.0" prefWidth="237.0" style="-fx-background-color: rgb(20, 19, 8);" styleClass="btn" stylesheets="@../css/style.css" text="Recherche" textFill="#ebe8e8ba">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Button>
+            <Button fx:id="btnAddCompte" alignment="TOP_CENTER" layoutX="-5.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="44.0" prefWidth="237.0" style="-fx-background-color: rgb(20, 19, 8);" styleClass="btn" stylesheets="@../css/style.css" text="Ouvrir un compte" textFill="#ebe8e8ba">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnAddCustomer" alignment="TOP_CENTER" layoutY="216.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="44.0" prefWidth="227.0" style="-fx-background-color: rgb(20, 19, 8);" styleClass="btn" stylesheets="@../css/style.css" text="Ajouter Client" textFill="#ebe8e8ba">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnListeCustomer" alignment="TOP_CENTER" layoutX="-10.0" layoutY="412.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="44.0" prefWidth="237.0" style="-fx-background-color: rgb(20, 19, 8);" styleClass="btn" stylesheets="@../css/style.css" text="Liste Clients" textFill="#ebe8e8ba">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnOperation" alignment="TOP_CENTER" layoutX="-5.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="44.0" prefWidth="237.0" style="-fx-background-color: rgb(20, 19, 8);" styleClass="btn" stylesheets="@../css/style.css" text="Operation" textFill="#ebe8e8ba">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
          </children></Pane>
-      <AnchorPane layoutX="209.0" prefHeight="200.0" prefWidth="815.0" styleClass="display_information_bar" AnchorPane.leftAnchor="209.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Pane layoutX="432.0" layoutY="16.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0" prefWidth="383.0" styleClass="display_information_primary" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Pane layoutX="16.0" layoutY="16.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0" prefWidth="166.0" styleClass="display_information_primary" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="0.0">
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding>
-            </Pane>
-         </children></AnchorPane>
-      <AnchorPane fx:id="contentLayout" layoutX="217.0" layoutY="210.0" prefHeight="490.0" prefWidth="807.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="217.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="210.0" />
+      <AnchorPane fx:id="contentLayout" layoutX="217.0" layoutY="210.0" prefHeight="490.0" prefWidth="807.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="217.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

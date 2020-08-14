@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="contentLayoutSearch" prefHeight="700.0" prefWidth="807.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SearchController">
+   <children>
+      <Pane prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: rgb(196, 166, 82);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fill="#eed6d6" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="Chercher un compte" textAlignment="CENTER" wrappingWidth="203.193359375">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="searchTfd" layoutX="222.0" layoutY="21.0" prefHeight="39.0" prefWidth="262.0" promptText="Recherche" />
+            <Button layoutX="496.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleSubmit" prefHeight="39.0" prefWidth="101.0" style="-fx-background-color: rgb(64, 47, 1); -fx-text-fill: #fff; -fx-font-size: 16px;" text="Valide" />
+         </children>
+      </Pane>
+      <Pane fx:id="displayData" layoutY="80.0" prefHeight="140.0" prefWidth="448.0" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+         <children>
+            <Pane prefHeight="118.0" prefWidth="302.0" style="-fx-background-color: rgb(77, 69, 49);">
+               <children>
+                  <Text layoutX="95.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compte" textAlignment="CENTER" wrappingWidth="85.2900390625">
+                     <font>
+                        <Font name="Algerian" size="18.0" />
+                     </font>
+                  </Text>
+                  <HBox layoutX="18.0" layoutY="40.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: rgb(209, 207, 203);" text="Numero" wrappingWidth="62.193359375" />
+                        <Text fx:id="numberTfd" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700; -fx-fill: rgb(209, 207, 203);" text="CP4785" wrappingWidth="206.193359375" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="18.0" layoutY="65.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: rgb(209, 207, 203);" text="Solde" wrappingWidth="62.193359375" />
+                        <Text fx:id="soldeTfd" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700; -fx-fill: rgb(209, 207, 203);" text="781111" wrappingWidth="203.193359375" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="14.0" layoutY="88.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: rgb(209, 207, 203);" text="Date de creation" wrappingWidth="117.193359375" />
+                        <Text fx:id="creadAtTfd" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700; -fx-fill: rgb(209, 207, 203);" text="781111" wrappingWidth="159.193359375" />
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+            <Pane layoutX="301.0" prefHeight="118.0" prefWidth="506.0" style="-fx-background-color: rgb(168, 157, 128);">
+               <children>
+                  <HBox layoutX="14.0" layoutY="35.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="Nom      :" wrappingWidth="62.193359375" />
+                        <Text fx:id="firstnameTfd" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="CP4785" wrappingWidth="156.193359375" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="14.0" layoutY="59.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="prenom :" wrappingWidth="62.193359375" />
+                        <Text fx:id="lastnameTfd" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="781111" wrappingWidth="152.193359375" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="14.0" layoutY="88.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="CIN       :" wrappingWidth="62.193359375" />
+                        <Text fx:id="cinTfd" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="CP4785" wrappingWidth="179.193359375" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="241.0" layoutY="35.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="Email    :" wrappingWidth="62.193359375" />
+                        <Text fx:id="emailTfd" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="mamadousokp@gmail.com" wrappingWidth="197.193359375" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="241.0" layoutY="59.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="Adress :" wrappingWidth="62.193359375" />
+                        <Text fx:id="adressTfd" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="CP4785" wrappingWidth="187.193359375" />
+                     </children>
+                  </HBox>
+                  <Text layoutX="171.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Propriétaire" textAlignment="CENTER" wrappingWidth="172.2900390625">
+                     <font>
+                        <Font name="Algerian" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane fx:id="displayDataTable" layoutY="197.0" prefHeight="293.0" prefWidth="807.0" style="-fx-background-color: rgb(232, 230, 225);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="197.0">
+         <children>
+            <TableView fx:id="table" layoutY="73.0" prefHeight="430.0" prefWidth="807.0">
+              <columns>
+                <TableColumn fx:id="operationColumn" prefWidth="195.0" text="Operation" />
+                  <TableColumn fx:id="soldeColumn" prefWidth="317.0" text="Montant" />
+                <TableColumn fx:id="dateColumn" prefWidth="294.0" text="Date" />
+              </columns>
+            </TableView>
+            <Text fx:id="textHeroOperation" layoutX="200.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La liste des operations sur ce compte" textAlignment="CENTER" wrappingWidth="407.171875">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

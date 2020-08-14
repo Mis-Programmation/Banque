@@ -1,6 +1,8 @@
 package controllers;
+import entity.CompteEntity;
 import entity.CustomerEntity;
 import exception.FoundEntityException;
+import exception.NotFoundEntityException;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -14,11 +16,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import serviceInterface.CustomerServiceInterface;
 import utils.AlertUtils;
 
 import java.io.IOException;
@@ -50,7 +51,35 @@ public class CustomerController extends AbstractController implements Initializa
     private DatePicker dateOfTheBirth;
 
     @FXML
-    private TableColumn<CustomerEntity, Integer> idCell;
+    private Text firstnameTfd;
+
+    @FXML
+    private Text lastnameTfd;
+
+    @FXML
+    private Text cinTfd;
+
+    @FXML
+    private Pane paneLayout;
+
+
+    @FXML
+    private Text emailTfd;
+
+    @FXML
+    private Text adressTfd;
+
+    @FXML
+    private TableColumn<CompteEntity, String> compteColumn;
+
+    @FXML
+    private TableColumn<CompteEntity, Double> soldeColumn;
+
+    @FXML
+    private TableColumn<CompteEntity, java.sql.Date> createdColumn;
+
+    @FXML
+    private TableColumn<CustomerEntity, String> idCell;
     @FXML
     private TableColumn<CustomerEntity, String> firstNameCell;
     @FXML
@@ -64,7 +93,16 @@ public class CustomerController extends AbstractController implements Initializa
     @FXML
     private TableView<CustomerEntity> tableCustomer;
 
+    @FXML
+    private TableView<CompteEntity> tableCompte;
+
+
+
+    @FXML
+    private TextField searchTfd;
+
     private List<CustomerEntity> customerEntities;
+
 
     @FXML
     void seeListe(ActionEvent event) {
@@ -81,10 +119,16 @@ public class CustomerController extends AbstractController implements Initializa
         window.show();
     }
 
+    // permet d'ajouter un client
     @FXML
     void handleSubmit(ActionEvent event) {
         addCustomer();
     }
+
+    private CustomerEntity customerEntity;
+    /**
+     * permet d'ajouter un client
+     */
     public void addCustomer()
     {
         CustomerEntity customerEntity  = new CustomerEntity();
@@ -132,13 +176,70 @@ public class CustomerController extends AbstractController implements Initializa
         }
     }
 
+    // permet de rechercher un client
+    @FXML
+    void handleSubmitSearch(ActionEvent event) {
+        String searchTfd = this.searchTfd.getText().trim();
+        if(searchTfd.isEmpty()){
+            AlertUtils.showMessage("Le champs ne doit etre vide","validation"
+                    ,"Le champs ne doit etre vide","ERROR");
+            return;
+        }
+        try {
+            AnchorPane parent = FXMLLoader.load(getClass().getResource("/view/CustomerView/ShowDetailCustomer.fxml"));
+            paneLayout.getChildren().setAll(parent);
+            this.customerEntity = customerServiceInterface.findCustomerWithCompte(searchTfd);
+        } catch (SQLException | NotFoundEntityException e) {
+            AlertUtils.showMessage("Ce client n'existe pas","Donnee"
+                    ,"Le champs ne doit etre videCe client n'existe pas","ERROR");
+
+        }catch (IOException e){
+            System.out.println("error d'affichage de fenetre");
+        }
+    }
+
+    private void getCustomWithCompte()
+    {
+        CustomerEntity customerEntity = null;
+        if(!searchTfd.getText().trim().isEmpty()){
+            try {
+                customerEntity = customerServiceInterface.findCustomerWithCompte(searchTfd.getText().trim());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (NotFoundEntityException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(null != customerEntity){
+            firstnameTfd.setText(customerEntity.getFirstName());
+            lastnameTfd.setText(customerEntity.getLastName());
+            emailTfd.setText(customerEntity.getEmail());
+            adressTfd.setText(customerEntity.getAddress());
+            cinTfd.setText(customerEntity.getNumberIdentification());
+
+            if(null != customerEntity.getCompte()){
+                this.compteColumn.setCellValueFactory(e ->
+                        new ReadOnlyObjectWrapper<>(e.getValue().getNumero()));
+                this.soldeColumn.setCellValueFactory( e ->
+                        new ReadOnlyObjectWrapper<>(e.getValue().getSolde()) );
+                this.createdColumn.setCellValueFactory( e -> new ReadOnlyObjectWrapper<>(e.getValue().getCreateAt()) );
+
+                this.tableCompte.setItems(FXCollections.observableArrayList(customerEntity.getCompte()));
+            }
+        }
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initTableCustomer();
     }
 
+
+
     /**
-     * permet d'initialier le tableau de client
+     * permet d'initialiser le tableau de client
      */
     private void initTableCustomer()
     {
@@ -154,14 +255,16 @@ public class CustomerController extends AbstractController implements Initializa
                         "WARNING");
             }
 
-            this.idCell.setCellValueFactory( e -> new ReadOnlyObjectWrapper<>(e.getValue().getId())  );
+            this.idCell.setCellValueFactory( e ->
+                    new ReadOnlyObjectWrapper<>(e.getValue().getNumberIdentification())  );
             this.firstNameCell.setCellValueFactory( cell -> new ReadOnlyObjectWrapper<>( cell.getValue().getFirstName() ));
             this.lastNameCell.setCellValueFactory( event -> new ReadOnlyObjectWrapper<>(event.getValue().getLastName()) );
-            this.idCell.setCellValueFactory( event -> new ReadOnlyObjectWrapper<>(event.getValue().getId()) );
             this.emailCell.setCellValueFactory( event -> new ReadOnlyObjectWrapper<>( event.getValue().getEmail()) );
             this.adressCell.setCellValueFactory( event -> new ReadOnlyObjectWrapper<>( event.getValue().getAddress()) );
             this.dateOfTheBirthCell.setCellValueFactory( event -> new ReadOnlyObjectWrapper<>( event.getValue().getDateOfTheBirth()) );
             this.tableCustomer.setItems(FXCollections.observableArrayList(customerEntities));
         }
     }
+
+
 }

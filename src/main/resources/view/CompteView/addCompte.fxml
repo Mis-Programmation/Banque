@@ -11,63 +11,63 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="contentLayout" prefHeight="500.0" prefWidth="815.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CompteController">
+<AnchorPane fx:id="contentLayout" prefHeight="700.0" prefWidth="815.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CompteController">
    <children>
-      <Pane prefHeight="500.0" prefWidth="604.0" style="-fx-background-color: rgb(88, 94, 130);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane prefHeight="500.0" prefWidth="604.0" style="-fx-background-color: rgb(227, 220, 204);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox layoutX="122.0" layoutY="69.0" prefHeight="103.0" prefWidth="599.0" style="-fx-padding: 16;">
-               <children>
-                  <Label prefHeight="36.0" prefWidth="185.0" text="Numero du compte" textFill="#f8d2d2">
-                     <font>
-                        <Font name="Candara" size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="numero" prefHeight="36.0" prefWidth="305.0" />
-               </children>
-               <opaqueInsets>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </opaqueInsets>
-            </VBox>
-            <VBox layoutX="122.0" layoutY="158.0" prefHeight="103.0" prefWidth="282.0" style="-fx-padding: 16;">
-               <children>
-                  <Label prefHeight="36.0" prefWidth="185.0" text="Solde" textFill="#f8d2d2">
-                     <font>
-                        <Font name="Candara" size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="solde" prefHeight="36.0" prefWidth="293.0" />
-               </children>
-               <opaqueInsets>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </opaqueInsets>
-            </VBox>
-            <Button fx:id="btnHandleSubmit" layoutX="297.0" layoutY="303.0" mnemonicParsing="false" onAction="#handleSubmit" prefHeight="43.0" prefWidth="250.0" style="-fx-background-color: rgb(65, 217, 121); -fx-font-weight: 700;" text="Valide" textAlignment="CENTER" textFill="#e6eee5">
+            <Button fx:id="btnHandleSubmit" layoutX="223.0" layoutY="504.0" mnemonicParsing="false" onAction="#handleSubmit" prefHeight="69.0" prefWidth="370.0" style="-fx-background-color: rgb(64, 47, 1); -fx-font-weight: 700;" text="Valide" textAlignment="CENTER" textFill="#e6eee5">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <AnchorPane layoutX="137.0" layoutY="7.0" prefHeight="49.0" prefWidth="593.0" style="-fx-background-color: rgb(75, 97, 227);">
+            <VBox layoutX="447.0" layoutY="334.0" prefHeight="103.0" prefWidth="282.0" style="-fx-spacing: 6;">
                <children>
-                  <Text fill="#ebdfdf" layoutX="109.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cree un compte" textAlignment="CENTER" wrappingWidth="375.0">
+                  <Label fx:id="label1411" prefHeight="33.0" prefWidth="287.0" style="-fx-text-fill: rgb(89, 64, 6); -fx-font-weight: 700;" text="Client" textFill="#6c6083">
                      <font>
-                        <Font size="35.0" />
-                     </font>
-                  </Text>
-               </children>
-            </AnchorPane>
-            <VBox layoutX="422.0" layoutY="158.0" prefHeight="103.0" prefWidth="282.0" style="-fx-padding: 16;">
-               <children>
-                  <Label prefHeight="36.0" prefWidth="185.0" text="Client" textFill="#f8d2d2">
-                     <font>
-                        <Font name="Candara" size="18.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="customerId" prefHeight="41.0" prefWidth="250.0" />
+                  <ComboBox fx:id="customerId" prefHeight="49.0" prefWidth="270.0" style="-fx-background-color: rgb(240, 240, 245); -fx-border-color: rgb(69, 71, 99);" />
                </children>
                <opaqueInsets>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </opaqueInsets>
             </VBox>
+            <VBox layoutX="73.0" layoutY="206.0" prefHeight="103.0" prefWidth="635.0" style="-fx-spacing: 6;">
+               <children>
+                  <Label fx:id="label14" prefHeight="33.0" prefWidth="287.0" style="-fx-text-fill: rgb(89, 64, 6); -fx-font-weight: 700;" text="Numero du compte" textFill="#6c6083">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="numero" prefHeight="49.0" prefWidth="270.0" style="-fx-background-color: rgb(240, 240, 245); -fx-border-color: rgb(69, 71, 99);" />
+               </children>
+               <opaqueInsets>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </opaqueInsets>
+            </VBox>
+            <VBox layoutX="73.0" layoutY="334.0" prefHeight="103.0" prefWidth="320.0" style="-fx-spacing: 6;">
+               <children>
+                  <Label fx:id="label141" prefHeight="33.0" prefWidth="287.0" style="-fx-text-fill: rgb(89, 64, 6); -fx-font-weight: 700;" text="Solde" textFill="#6c6083">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="solde" prefHeight="49.0" prefWidth="270.0" style="-fx-background-color: rgb(240, 240, 245); -fx-border-color: rgb(69, 71, 99);" />
+               </children>
+               <opaqueInsets>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </opaqueInsets>
+            </VBox>
+         </children>
+      </Pane>
+      <Pane layoutX="20.0" layoutY="20.0" prefHeight="59.0" prefWidth="200.0" style="-fx-background-color: rgb(237, 189, 69);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutX="195.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: rgb(64, 60, 50);" text="Ouvrir un compte" textAlignment="CENTER" wrappingWidth="425.42578125">
+               <font>
+                  <Font name="Algerian" size="30.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>

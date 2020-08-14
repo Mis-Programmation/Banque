@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="contentLayout" prefHeight="500.0" prefWidth="815.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomerController">
+<AnchorPane fx:id="contentLayout" prefHeight="700.0" prefWidth="815.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomerController">
    <children>
-      <Pane prefHeight="500.0" prefWidth="604.0" style="-fx-background-color: rgb(88, 94, 130);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane prefHeight="500.0" prefWidth="604.0" style="-fx-background-color:rgb(227, 220, 204);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane layoutX="137.0" layoutY="7.0" prefHeight="49.0" prefWidth="593.0" style="-fx-background-color: rgb(75, 97, 227);">
+            <Pane fx:id="paneLayout" layoutY="134.0" prefHeight="566.0" prefWidth="815.0">
                <children>
-                  <Text fill="#ebdfdf" layoutX="109.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des clients" textAlignment="CENTER" wrappingWidth="375.0">
-                     <font>
-                        <Font size="35.0" />
-                     </font>
-                  </Text>
+                  <TableView fx:id="tableCustomer" prefHeight="576.0" prefWidth="815.0">
+                     <columns>
+                        <TableColumn fx:id="idCell" prefWidth="141.0" text="CIN" />
+                        <TableColumn fx:id="firstNameCell" prefWidth="110.0" text="Nom" />
+                        <TableColumn fx:id="lastNameCell" prefWidth="157.0" text="Prenom" />
+                        <TableColumn fx:id="emailCell" prefWidth="154.0" text="Email" />
+                        <TableColumn fx:id="adressCell" prefWidth="114.0" text="Adress" />
+                        <TableColumn fx:id="dateOfTheBirthCell" prefWidth="138.0" text="Date de naissance" />
+                     </columns>
+                  </TableView>
                </children>
-            </AnchorPane>
-            <TableView fx:id="tableCustomer" layoutY="93.0" prefHeight="407.0" prefWidth="815.0">
-              <columns>
-                <TableColumn fx:id="idCell" prefWidth="63.0" text="ID" />
-                <TableColumn fx:id="firstNameCell" prefWidth="159.0" text="Nom" />
-                  <TableColumn fx:id="lastNameCell" prefWidth="167.0" text="Prenom" />
-                  <TableColumn fx:id="emailCell" prefWidth="163.0" text="Email" />
-                  <TableColumn fx:id="adressCell" prefWidth="101.0" text="Adress" />
-                  <TableColumn fx:id="dateOfTheBirthCell" prefWidth="161.0" text="Date de naissance" />
-              </columns>
-            </TableView>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="20.0" layoutY="20.0" prefHeight="59.0" prefWidth="200.0" style="-fx-background-color: rgb(237, 189, 69);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutX="195.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: rgb(64, 60, 50);" text="ClienTs Liste " textAlignment="CENTER" wrappingWidth="425.42578125">
+               <font>
+                  <Font name="Algerian" size="30.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane prefHeight="76.0" prefWidth="815.0" style="-fx-background-color: rgb(237, 150, 6);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="59.0">
+         <children>
+            <TextField fx:id="searchTfd" layoutX="321.0" layoutY="16.0" prefHeight="45.0" prefWidth="296.0" promptText="Recherche par CIN" style="-fx-background-color: rgb(240, 240, 245); -fx-border-color: rgb(69, 71, 99);" />
+            <Button layoutX="636.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleSubmitSearch" prefHeight="45.0" prefWidth="154.0" style="-fx-background-color: rgb(64, 47, 1);" text="Valide" textFill="#f5e1e1">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>

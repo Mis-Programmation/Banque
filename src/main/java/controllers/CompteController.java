@@ -11,17 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import serviceInterface.CompteServiceInterface;
-import serviceInterface.CustomerServiceInterface;
 import utils.AlertUtils;
 
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class CompteController extends AbstractController implements Initializable {
@@ -66,13 +60,12 @@ public class CompteController extends AbstractController implements Initializabl
     public void addCompte()
     {
         // cutomerId => retour l'objec customer
-        if(numero.getText().trim().isEmpty() || solde.getText().trim().isEmpty()){
+        if(numero.getText().trim().isEmpty() || solde.getText().trim().isEmpty() || customerId.getValue() == null){
             AlertUtils.showMessage("Errors","ok","Toutes les champs sont required","WARNING");
             return;
         }
-        CustomerEntity customerEntity  = customerId.getValue();
         CompteEntity compteEntity = new CompteEntity();
-        compteEntity.setCustomer(customerEntity);
+        compteEntity.setCustomer(this.customerId.getValue());
         try {
             compteEntity.setSolde(Double.parseDouble(solde.getText().trim()));
         }catch (NumberFormatException e){
@@ -87,6 +80,10 @@ public class CompteController extends AbstractController implements Initializabl
         compteEntity.setNumero(numero.getText().trim());
         try {
             compteServiceInterface.save(compteEntity);
+            double nb =  Math.random() * 1000;
+            numero.setText("CP"+(int)nb);
+            numero.setText(""+nb);
+            solde.setText("");
             AlertUtils.showMessage("Sauvegarde","ok","Le compte a bien ete ajouter","INFORMATION");
         } catch (SQLException e) {
             AlertUtils.showMessage("Sauvegarde","ok","Erreur de sauvegarde","ERROR");

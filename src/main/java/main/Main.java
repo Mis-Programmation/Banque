@@ -7,29 +7,26 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private static Stage primaryStage;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        Parent root = FXMLLoader.load(getClass().getResource("/view/Dashbord.fxml"));
+        this.primaryStage = primaryStage;
+        Parent root = FXMLLoader.load(getClass().getResource("/view/Authentification/login.fxml"));
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Dashboard");
+        primaryStage.setTitle("Login");
         primaryStage.setScene(scene);
         primaryStage.show();
-
+        primaryStage.setResizable(false);
     }
 
     public static void main(String[] args) {
-
-//        ApplicationContext applicationContext = new AnnotationConfigApplicationContext("serviceImp","daoImp");
-//        CustomerServiceInterface compteDaoInterface = applicationContext.getBean(CustomerServiceInterface.class);
-//
-//        try {
-//            System.out.println(compteDaoInterface.findAll());
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-
         launch(args);
+    }
+
+    // permet de recuperer la scene principal
+    public static Stage getPrimaryStage() {
+        return primaryStage;
     }
 }
 

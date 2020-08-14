@@ -11,78 +11,75 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="contentLayout" prefHeight="500.0" prefWidth="815.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OperationController">
+<AnchorPane fx:id="contentLayout" prefHeight="700.0" prefWidth="807.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OperationController">
    <children>
-      <Pane prefHeight="500.0" prefWidth="604.0" style="-fx-background-color: rgb(88, 94, 130);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane prefHeight="500.0" prefWidth="604.0" style="-fx-background-color: rgb(227, 220, 204);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="btnHandleSubmit" layoutX="279.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleSubmit" prefHeight="43.0" prefWidth="250.0" style="-fx-background-color: rgb(65, 217, 121); -fx-font-weight: 700;" text="Valide" textAlignment="CENTER" textFill="#e6eee5">
+            <Button fx:id="btnHandleSubmit" layoutX="239.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleSubmit" prefHeight="66.0" prefWidth="336.0" style="-fx-background-color: rgb(64, 47, 1); -fx-font-weight: 700;" text="Valide" textAlignment="CENTER" textFill="#e6eee5">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <AnchorPane layoutX="137.0" layoutY="7.0" prefHeight="49.0" prefWidth="593.0" style="-fx-background-color: rgb(75, 97, 227);">
+            <VBox layoutX="109.0" layoutY="71.0" prefHeight="139.0" prefWidth="634.0" style="-fx-padding: 16px; -fx-spacing: 12px;">
                <children>
-                  <Text fx:id="heroText" fill="#ebdfdf" layoutX="109.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Operation" textAlignment="CENTER" wrappingWidth="375.0">
+                  <Label prefHeight="27.0" prefWidth="207.0" style="-fx-text-fill: rgb(89, 64, 6); -fx-font-weight: 700;" text="Choisir L'operation" textFill="#6c6083">
                      <font>
-                        <Font size="35.0" />
-                     </font>
-                  </Text>
-               </children>
-            </AnchorPane>
-            <VBox layoutX="146.0" layoutY="105.0" prefHeight="103.0" prefWidth="552.0" style="-fx-padding: 16;">
-               <children>
-                  <Label prefHeight="36.0" prefWidth="185.0" text="Type operation" textFill="#f8d2d2">
-                     <font>
-                        <Font name="Candara" size="18.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="opeationTypeCombox" onAction="#HandleChoise" prefHeight="36.0" prefWidth="503.0" promptText="Choisir une operation" />
+                  <ComboBox fx:id="opeationTypeCombox" editable="true" onAction="#HandleChoise" prefHeight="46.0" prefWidth="578.0" promptText="Choisir une operation" style="-fx-border-color: rgb(69, 71, 99); -fx-background-color: rgb(240, 240, 245);" />
                </children>
-               <opaqueInsets>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </opaqueInsets>
             </VBox>
-            <Pane fx:id="paneDebiteurAndCrediteur" layoutX="157.0" layoutY="208.0" prefHeight="154.0" prefWidth="503.0">
+            <Pane fx:id="paneDebiteurAndCrediteur" layoutY="203.0" prefHeight="262.0" prefWidth="807.0">
                <children>
-                  <VBox layoutY="-18.0" prefHeight="103.0" prefWidth="250.0" style="-fx-padding: 16;">
+                  <VBox layoutX="111.0" prefHeight="133.0" prefWidth="313.0" style="-fx-padding: 16;">
                      <children>
-                        <Label fx:id="label1" prefHeight="36.0" prefWidth="217.0" text="Debiteur" textFill="#f8d2d2">
+                        <Label fx:id="label1" prefHeight="33.0" prefWidth="287.0" style="-fx-text-fill: rgb(89, 64, 6); -fx-font-weight: 700;" text="Label1" textFill="#6c6083">
                            <font>
-                              <Font name="Candara" size="18.0" />
+                              <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="input1" prefHeight="36.0" prefWidth="560.0" />
+                        <TextField fx:id="input1" prefHeight="49.0" prefWidth="270.0" style="-fx-background-color: rgb(240, 240, 245); -fx-border-color: rgb(69, 71, 99);" />
                      </children>
                      <opaqueInsets>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </opaqueInsets>
                   </VBox>
-                  <VBox layoutX="252.0" layoutY="-18.0" prefHeight="103.0" prefWidth="250.0" style="-fx-padding: 16;">
+                  <VBox layoutX="424.0" prefHeight="139.0" prefWidth="313.0" style="-fx-padding: 16;">
                      <children>
-                        <Label fx:id="label2" prefHeight="36.0" prefWidth="185.0" text="Crediteur" textFill="#f8d2d2">
+                        <Label fx:id="label2" prefHeight="33.0" prefWidth="283.0" style="-fx-text-fill: rgb(89, 64, 6); -fx-font-weight: 700;" text="Label2" textFill="#6c6083">
                            <font>
-                              <Font name="Candara" size="18.0" />
+                              <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="input2" prefHeight="36.0" prefWidth="560.0" />
+                        <TextField fx:id="input2" prefHeight="49.0" prefWidth="270.0" style="-fx-background-color: rgb(240, 240, 245); -fx-border-color: rgb(69, 71, 99);" />
                      </children>
                      <opaqueInsets>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </opaqueInsets>
                   </VBox>
-                  <VBox fx:id="vboxSolde" layoutX="-1.0" layoutY="69.0" prefHeight="85.0" prefWidth="503.0" style="-fx-padding: 16;">
+                  <VBox fx:id="vboxSolde" layoutX="115.0" layoutY="131.0" prefHeight="149.0" prefWidth="614.0" style="-fx-padding: 16;">
                      <children>
-                        <Label fx:id="label11" prefHeight="36.0" prefWidth="185.0" text="Montant" textFill="#f8d2d2">
+                        <Label prefHeight="33.0" prefWidth="101.0" style="-fx-text-fill: rgb(89, 64, 6); -fx-font-weight: 700;" text="Montant" textFill="#6c6083">
                            <font>
-                              <Font name="Candara" size="18.0" />
+                              <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="soldeTfd" prefHeight="55.0" prefWidth="471.0" />
+                        <TextField fx:id="soldeTfd" prefHeight="48.0" prefWidth="471.0" style="-fx-background-color: rgb(240, 240, 245); -fx-border-color: rgb(69, 71, 99);" />
                      </children>
                      <opaqueInsets>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </opaqueInsets>
                   </VBox>
+               </children>
+            </Pane>
+            <Pane layoutY="-1.0" prefHeight="59.0" prefWidth="807.0" style="-fx-background-color: rgb(237, 189, 69);">
+               <children>
+                  <Text fx:id="heroText" layoutX="236.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: rgb(64, 60, 50);" text="Operation" textAlignment="CENTER" wrappingWidth="336.0">
+                     <font>
+                        <Font name="Algerian" size="30.0" />
+                     </font>
+                  </Text>
                </children>
             </Pane>
          </children>

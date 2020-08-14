@@ -2,6 +2,7 @@ package controllers;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import serviceInterface.AdminServiceInterface;
 import serviceInterface.CompteServiceInterface;
 import serviceInterface.CustomerServiceInterface;
 import utils.AlertUtils;
@@ -10,12 +11,14 @@ public abstract class AbstractController {
 
     protected CustomerServiceInterface customerServiceInterface;
     protected CompteServiceInterface compteServiceInterface;
-
+    protected AdminServiceInterface adminServiceInterface;
     public AbstractController()
     {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext("serviceImp","daoImp");
         this.customerServiceInterface = applicationContext.getBean(CustomerServiceInterface.class);
         this.compteServiceInterface = applicationContext.getBean(CompteServiceInterface.class);
+        this.adminServiceInterface = applicationContext.getBean(AdminServiceInterface.class);
+
     }
 
     public boolean isCompteNameValidate(String compteName)
